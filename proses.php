@@ -1,20 +1,18 @@
 <?php
 if($_SERVER["REQUEST_METHOD"]=="POST"){
     include "../../koneksi.php";
-    $namapemasok = $_POST['namapemasok'];
-    $alamat = $_POST['alamat'];
-    $telepon = $_POST['telepon'];
+    $namakategori = $_POST['namakategori'];
     $status = $_POST['status'];
     $aksi = $_POST['aksi'];
     if($aksi == "tambah"){
-        $sql = "INSERT INTO pemasok (nama_pemasok,alamat,telepon,status)VALUES('$namapemasok','$alamat','$telepon','$status')";
+        $sql = "INSERT INTO kategori (nama_kategori, status)VALUES('$namakategori','$status')";
     }elseif($aksi == "edit"){
         $id = $_GET['id'];
-        $sql = "UPDATE pemasok SET nama_pemasok='$namapemasok', alamat='$alamat', telepon='$telepon', status='$status' WHERE id_pemasok='$id'";
+        $sql = "UPDATE kategori SET nama_kategori='$namakategori', status='$status' WHERE id_kategori='$id'";
     }elseif($aksi == "hapus"){
         $id = $_GET['id'];
-        $sql = "DELETE FROM pemasok WHERE id_pemasok='$id'";
+        $sql = "DELETE FROM kategori WHERE id_kategori='$id'";
     }
     $mysqli->query($sql);
 }
-header('location:../../dashboard.php?modul=pemasok');
+header('location:../../dashboard.php?modul=kategori');
